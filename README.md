@@ -93,11 +93,12 @@ It first retrieves real reviews → then generates answers from those reviews.
                         │ - Review transparency  │
                         └────────────────────────┘
 # 📦 Tech Stack
-Layer	Technology
-Language	Python
-LLM	LLaMA 3.2 (Ollama)
-Embeddings	mxbai-embed-large (Ollama)
-Vector DB	ChromaDB
-RAG Framework	LangChain
-UI	Streamlit
-Dataset	Yelp Academic Open Dataset
+| Layer         | Technology                 |
+| ------------- | -------------------------- |
+| Language      | Python                     |
+| LLM           | LLaMA 3.2 (Ollama)         |
+| Embeddings    | mxbai-embed-large (Ollama) |
+| Vector DB     | ChromaDB                   |
+| RAG Framework | LangChain                  |
+| UI            | Streamlit                  |
+| Dataset       | Yelp Academic Open Dataset |
