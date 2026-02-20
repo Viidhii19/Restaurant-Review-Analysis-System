@@ -102,3 +102,7 @@ It first retrieves real reviews → then generates answers from those reviews.
 | RAG Framework | LangChain                  |
 | UI            | Streamlit                  |
 | Dataset       | Yelp Academic Open Dataset |
+
+# Output
+
+https://drive.google.com/file/d/1ut47COhxKixWsZ5OpvvXKjOsvhZ8-0qh/view?usp=sharing
