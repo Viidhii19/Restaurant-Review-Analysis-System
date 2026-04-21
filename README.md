@@ -1,108 +1,139 @@
-# 🍽 Restaurant Review Analysis System
+# 🍽️ Restaurant Review Intelligence System (RAG-Based)
 
-An AI-powered Restaurant Intelligence Platform that analyzes thousands of real customer reviews using Retrieval-Augmented Generation (RAG) to provide accurate, evidence-based insights about restaurants — not hallucinated answers.
+An end-to-end **Retrieval-Augmented Generation (RAG)** system that transforms thousands of raw restaurant reviews into **trustworthy, evidence-backed insights** using LLMs.
 
-This system allows users to ask natural-language questions about restaurants and receive answers grounded in real customer experiences.
-# 🚀 What This Project Does
+Unlike typical AI apps that hallucinate, this system ensures every answer is **grounded in real customer reviews**.
 
-Instead of manually reading hundreds of Google/Yelp reviews, this system lets users ask questions like:
-“Is this restaurant good for business meetings?”
-“Is the food overpriced?”
-“How is the service speed?”
-“Which dishes are praised the most?”
-“What are the common complaints?”
+---
 
-The AI then answers using only real reviews stored in the vector database.
+## 🚀 Why This Project Matters
 
-# 🧠 Core Technology
+Choosing a restaurant today means scanning hundreds of reviews across platforms.
 
-This project uses a RAG (Retrieval-Augmented Generation) architecture, which means:
+This system eliminates that friction by allowing users to ask:
 
-The LLM does not guess.
-It first retrieves real reviews → then generates answers from those reviews.
+* “Is this place good for business meetings?”
+* “Are customers complaining about service delays?”
+* “Is the pricing justified by quality?”
 
-# Architecture
-                        ┌────────────────────────┐
-                        │     Yelp Open Dataset   │
-                        │ (Business + Reviews)    │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │   Data Preprocessing    │
-                        │   (process_yelp.py)     │
-                        │  - Filters restaurants │
-                        │  - Cleans review text   │
-                        │  - Links business info  │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │  Cleaned CSV Dataset    │
-                        │ restaurant_reviews_    │
-                        │        clean.csv        │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │   Embedding Engine      │
-                        │   (Ollama - mxbai)      │
-                        │ Converts text → vectors│
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │   Vector Database       │
-                        │     (ChromaDB)          │
-                        │ Stores embeddings +    │
-                        │ metadata               │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │   Retriever Engine     │
-                        │  (Semantic Search)     │
-                        │ Fetches relevant       │
-                        │ reviews by meaning     │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │     Skill Router        │
-                        │ Detects intent:         │
-                        │ Food / Service / Price  │
-                        │ Ambience / Trends etc.  │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │  Large Language Model   │
-                        │     (LLaMA 3.2)         │
-                        │ Summarizes & reasons    │
-                        │ ONLY using retrieved   │
-                        │ reviews                │
-                        └────────────┬───────────┘
-                                     │
-                                     ▼
-                        ┌────────────────────────┐
-                        │     Streamlit UI        │
-                        │ - Restaurant selector  │
-                        │ - Cuisine filter       │
-                        │ - Ratings              │
-                        │ - Natural language Q&A │
-                        │ - Review transparency  │
-                        └────────────────────────┘
-# 📦 Tech Stack
-| Layer         | Technology                 |
-| ------------- | -------------------------- |
-| Language      | Python                     |
-| LLM           | LLaMA 3.2 (Ollama)         |
-| Embeddings    | mxbai-embed-large (Ollama) |
-| Vector DB     | ChromaDB                   |
-| RAG Framework | LangChain                  |
-| UI            | Streamlit                  |
-| Dataset       | Yelp Academic Open Dataset |
+…and receive **fact-based answers backed by real user reviews**.
 
-# Output
+---
 
+## ⚡ Key Features
+
+* 🔍 **Semantic Search over Reviews** (not keyword-based)
+* 🧠 **RAG Pipeline** for grounded responses
+* 🎯 **Intent-Aware Query Routing** (food, pricing, service, ambience)
+* 📊 **Evidence-Based Answers** with source transparency
+* 💬 **Natural Language Q&A Interface**
+* ⚡ Real-time interaction via Streamlit
+
+---
+
+## 🧠 System Architecture
+
+Pipeline Overview:
+
+1. **Data Ingestion**
+
+   * Yelp Academic Dataset (business + reviews)
+
+2. **Preprocessing**
+
+   * Restaurant filtering
+   * Text cleaning & normalization
+   * Metadata linking
+
+3. **Embedding Layer**
+
+   * Model: `mxbai-embed-large`
+   * Converts reviews → dense vectors
+
+4. **Vector Storage**
+
+   * ChromaDB for efficient similarity search
+
+5. **Retriever**
+
+   * Semantic search retrieves top-k relevant reviews
+
+6. **Intent Router**
+
+   * Classifies query into categories:
+
+     * Food, Service, Price, Ambience, Trends
+
+7. **LLM Reasoning**
+
+   * Model: LLaMA 3.2 (via Ollama)
+   * Generates answers strictly from retrieved context
+
+8. **User Interface**
+
+   * Streamlit-based interactive dashboard
+
+---
+
+## 📊 Example Output
+
+🎥 Demo:
 https://drive.google.com/file/d/1ut47COhxKixWsZ5OpvvXKjOsvhZ8-0qh/view?usp=sharing
+
+---
+
+## 🧪 What Makes This Different
+
+Most beginner RAG projects:
+
+* Dump documents into a vector DB
+* Ask questions → generate answers
+
+This project goes further:
+
+* ✅ **Intent-aware routing before generation**
+* ✅ **Structured restaurant filtering (not generic corpus)**
+* ✅ **End-to-end pipeline (data → UI)**
+* ✅ **Focus on real-world decision-making use case**
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer      | Technology            |
+| ---------- | --------------------- |
+| Language   | Python                |
+| LLM        | LLaMA 3.2 (Ollama)    |
+| Embeddings | mxbai-embed-large     |
+| Vector DB  | ChromaDB              |
+| Framework  | LangChain             |
+| UI         | Streamlit             |
+| Dataset    | Yelp Academic Dataset |
+
+---
+
+## 📌 Limitations
+
+* Performance depends on embedding quality
+* No fine-tuning applied (pure RAG pipeline)
+* Limited to dataset coverage (no live reviews)
+
+---
+
+## 🚧 Future Improvements
+
+* Hybrid search (BM25 + embeddings)
+* Fine-tuned LLM for better reasoning
+* Real-time data ingestion (Google/Yelp APIs)
+* Personalized recommendations per user
+
+---
+
+## 🧠 Key Takeaways
+
+This project demonstrates:
+
+* Practical implementation of RAG systems
+* Understanding of LLM limitations (hallucination)
+* Ability to design **data → retrieval → reasoning pipelines**
+* Building **AI systems with real-world usability**
